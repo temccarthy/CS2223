@@ -15,11 +15,11 @@ public:
 	virtual ~UI();
 	int number, color;
 	void display();
+	void playerInput();
 private:
 	Game game;
 	int inputColor();
 	int inputNumber();
-
 	bool inputValid(int color, int number);
 };
 

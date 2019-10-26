@@ -14,6 +14,7 @@ using namespace std;
 
 int main(int argc, char* argv[]){
 	UI* aUI = new UI();
-	aUI.display();
+	aUI->display();
+	aUI->playerInput();
 	~UI();
 }
