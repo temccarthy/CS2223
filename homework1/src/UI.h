@@ -8,6 +8,10 @@
 #ifndef UI_H_
 #define UI_H_
 
+class UI{
+public:
 
+private:
+}
 
 #endif /* UI_H_ */
