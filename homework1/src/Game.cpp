@@ -9,7 +9,7 @@
 using namespace std;
 #include "Game.h"
 
-Game::Game(){
+Game::Game(){ //EDITTED HERE
 	green = 3;
 	yellow = 5;
 	orange = 7;
