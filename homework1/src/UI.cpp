@@ -94,7 +94,7 @@ void UI::display()
 			{
 				if(i==0)
 				{
-					std::cout << "G";
+					std::cout << "Green";
 				}
 				if(i==1)
 				{
