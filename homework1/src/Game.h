@@ -12,19 +12,17 @@
 
 class Game{
 public:
-	int green;
-	int yellow;
-	int orange;
+	int colors[3];
 
 	Game();
 	virtual ~Game();
 
 	void makeMove(int color, int numTake);
 	void makeRandomMove();
-	void makeCorrectMove();
+	void makeComputerMove();
 
 private:
-
+	int findNimSum();
 };
 
 #endif /* GAME_H_ */
