@@ -26,39 +26,45 @@ int UI::inputColor()
 	do{
 		std::cout << "Type '0' for green, '1' for yellow, or '2' for orange";
 		cin >> color;
-	}while (color !=0 || color !=1 || color!=2);
+		if (game.colors[color] == 0)
+		{
+			std::cout << "No tiles available  for this color.";
+		}
+	}while ((color !=0 || color !=1 || color!=2) && (game.colors[color] > 0));		//initial color choice
 
-	if (color==0)
-	{
-		if (game.green == 0)
-		{
-			std::cout << "There are no green tiles available! Do something else.";
-			do{
-				std::cout << "Type '0' for green, '1' for yellow, or '2' for orange";
-				cin >> color;
-			}while (color !=0 || color !=1 || color!=2);
-		}
-	}
-	else if (color==1){
-		if (game.yellow == 0)
-		{
-			std::cout << "There are no yellow tiles available! Do something else.";
-			do{
-				std::cout << "Type '0' for green, '1' for yellow, or '2' for orange";
-				cin >> color;
-			}while (color !=0 || color !=1 || color!=2);
-		}
-	}
-	else if (color==2){
-		if (game.orange == 0)
-		{
-			std::cout << "There are no orange tiles available! Do something else.";
-			do{
-				std::cout << "Type '0' for green, '1' for yellow, or '2' for orange";
-				cin >> color;
-			}while (color !=0 || color !=1 || color!=2);
-		}
-	}
+
+
+//	if (color==0)										//handling "invalid input"
+//	{
+//		if (game.green == 0)
+//		{
+//			std::cout << "There are no green tiles available! Do something else.";
+//			do{
+//				std::cout << "Type '0' for green, '1' for yellow, or '2' for orange";
+//				cin >> color;
+//			}while (color !=0 || color !=1 || color!=2);
+//		}
+//	}
+//	else if (color==1){
+//		if (game.yellow == 0)
+//		{
+//			std::cout << "There are no yellow tiles available! Do something else.";
+//			do{
+//				std::cout << "Type '0' for green, '1' for yellow, or '2' for orange";
+//				cin >> color;
+//			}while (color !=0 || color !=1 || color!=2);
+//		}
+//	}
+//	else if (color==2){
+//		if (game.orange == 0)
+//		{
+//			std::cout << "There are no orange tiles available! Do something else.";
+//			do{
+//				std::cout << "Type '0' for green, '1' for yellow, or '2' for orange";
+//				cin >> color;
+//			}while (color !=0 || color !=1 || color!=2);
+//		}
+//	}
 
 	return color;
 }
