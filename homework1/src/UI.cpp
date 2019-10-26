@@ -94,7 +94,7 @@ void UI::display()
 			{
 				if(i==0)
 				{
-					std::cout << "Green";
+					std::cout << "G";
 				}
 				if(i==1)
 				{
@@ -105,5 +105,6 @@ void UI::display()
 					std::cout << "O";
 				}
 			}
+		std::cout << "\n";
 	}
 }
