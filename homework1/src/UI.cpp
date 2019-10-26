@@ -24,13 +24,13 @@ int UI::inputColor()
 
 	int icolor = -1;
 	do{
-		std::cout << "Type '0' for green, '1' for yellow, or '2' for orange";
-		cin >> icolor;
+		std::cout << "Type '0' for green, '1' for yellow, or '2' for orange\n";
+		std::cin >> icolor;
 		if (game.colors[icolor] == 0)
 		{
-			std::cout << "No tiles available  for this color.";
+			std::cout << "No tiles available  for this color.\n";
 		}
-	}while ((icolor !=0 || icolor !=1 || icolor!=2) && (game.colors[icolor] > 0));		//initial color choice
+	}while ((icolor !=0 && icolor !=1 && icolor!=2) && (game.colors[icolor] > 0));		//initial color choice
 
 
 
@@ -73,11 +73,11 @@ int UI::inputNumber()
 {
 	int inumber = -1;
 		do{
-			std::cout << "How many tiles do you want to remove ??";
-			cin >> inumber;
+			std::cout << "How many tiles do you want to remove ??\n";
+			std::cin >> inumber;
 			if (game.colors[color] < inumber)
 			{
-				std::cout << "u got too much dip on your chip. try that again, bucko.";
+				std::cout << "u got too much dip on your chip. try that again, bucko.\n";
 			}
 		}while ((game.colors[color] < inumber));
 

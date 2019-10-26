@@ -16,5 +16,9 @@ int main(int argc, char* argv[]){
 	UI* aUI = new UI();
 	aUI->display();
 	aUI->playerInput();
-	~UI();
+	aUI->display();
+	return 69;
+
+
+	//~UI();
 }
