@@ -9,30 +9,25 @@
 using namespace std;
 #include "UI.h"
 
-
-UI::UI(){ //EDITTED HERE AGAIN
+UI::UI() { //EDITTED HERE AGAIN
 	game = Game();
 }
 
-
-UI::~UI(){
+UI::~UI() {
 
 }
 
-int UI::inputColor()
-{
+int UI::inputColor() {
 
 	int color = -1;
-	do{
+	do {
 		std::cout << "Type '0' for green, '1' for yellow, or '2' for orange";
 		cin >> color;
-		if (game.colors[color] == 0)
-		{
+		if (game.colors[color] == 0) {
 			std::cout << "No tiles available  for this color.";
 		}
-	}while ((color !=0 || color !=1 || color!=2) && (game.colors[color] > 0));		//initial color choice
-
-
+	} while ((color != 0 || color != 1 || color != 2)
+			&& (game.colors[color] > 0));		//initial color choice
 
 //	if (color==0)										//handling "invalid input"
 //	{
@@ -69,42 +64,37 @@ int UI::inputColor()
 	return color;
 }
 
-int UI::inputNumber()
-{
+int UI::inputNumber() {
 	int number = -1;
-		do{
-			std::cout << "How many tiles do you want to remove ??";
-			cin >> number;
-			if (game.colors[color] < number)
-			{
-				std::cout << "u got too much dip on your chip. try that again, bucko.";
-			}
-		}while ((game.colors[color] < number));
-
+	do {
+		std::cout << "How many tiles do you want to remove ??";
+		cin >> number;
+		if (game.colors[color] < number) {
+			std::cout
+					<< "u got too much dip on your chip. try that again, bucko.";
+		}
+	} while ((game.colors[color] < number));
 
 	return number;
 }
 
-void UI::display()
-{
-
-	for (int i = 0; i<3; i++)
-	{
-		for (int j = 0; j<game.colors[i]; j++)
-			{
-				if(i==0)
-				{
-					std::cout << "G";
-				}
-				if(i==1)
-				{
-					std::cout << "Y";
-				}
-				if(i==2)
-				{
-					std::cout << "O";
-				}
+void UI::display() {
+	for (int i = 0; i<3; i++) {
+		for (int j = 0; j < game.colors[i]; j++) {
+			switch (i) {
+			case 0:
+				cout << "G";
+				break;
+			case 1:
+				cout << "Y";
+				break;
+			case 2:
+				cout << "O";
+				break;
+			default:
+				cout << "Its literally impossible to get here";
 			}
-		std::cout << "\n";
+			std::cout << "\n";
+		}
 	}
 }
