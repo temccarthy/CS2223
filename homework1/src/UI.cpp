@@ -69,3 +69,18 @@ int UI::inputColor()
 	return color;
 }
 
+int UI::inputNumber()
+{
+	int number = -1;
+		do{
+			std::cout << "How many tiles do you want to remove ??";
+			cin >> number;
+			if (game.colors[color] < number)
+			{
+				std::cout << "u got too much dip on your chip. try that again, bucko.";
+			}
+		}while ((game.colors[color] < number));
+
+
+	return number;
+}
