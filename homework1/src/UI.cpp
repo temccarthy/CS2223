@@ -84,3 +84,26 @@ int UI::inputNumber()
 
 	return number;
 }
+
+void UI::display()
+{
+
+	for (int i = 0; i<3; i++)
+	{
+		for (int j = 0; j<game.colors[i]; j++)
+			{
+				if(i==0)
+				{
+					std::cout << "G";
+				}
+				if(i==1)
+				{
+					std::cout << "Y";
+				}
+				if(i==2)
+				{
+					std::cout << "O";
+				}
+			}
+	}
+}

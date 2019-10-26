@@ -17,7 +17,7 @@ public:
 private:
 	Game game;
 	int inputColor();
-	int inputNumber;
+	int inputNumber();
 	void display();
 	bool inputValid(int color, int number);
 };
