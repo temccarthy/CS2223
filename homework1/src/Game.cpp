@@ -56,8 +56,6 @@ void Game::makeComputerMove(){
 		}
 	}
 
-
-
 	if (index == -1){
 		makeRandomMove();
 	} else {
