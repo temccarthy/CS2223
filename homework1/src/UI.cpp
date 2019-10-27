@@ -30,7 +30,7 @@ int UI::inputColor()
 		{
 			std::cout << "No tiles available  for this color.\n";
 		}
-	}while ((icolor !=0 && icolor !=1 && icolor!=2) && (game.colors[icolor] == 0));		//initial color choice
+	}while ((icolor !=0 && icolor !=1 && icolor!=2) || (game.colors[icolor] == 0));		//initial color choice
 
 
 
@@ -86,6 +86,7 @@ int UI::inputNumber()
 }
 
 void UI::display() {
+	cout << "- - - - - - - - - - - - - -\n";
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < game.colors[i]; j++) {
 			switch(i){
@@ -104,6 +105,7 @@ void UI::display() {
 		}
 		std::cout << "\n";
 	}
+	cout << "\n- - - - - - - - - - - - - -\n\n";
 }
 
 void UI::playerInput()
@@ -124,7 +126,25 @@ void UI::doEverything()
 	{
 		display();
 		playerInput();
+		if (game.colors[0] == 0 ||
+				game.colors[1] == 0 ||
+				game.colors[2] == 0)
+		{
+			std::cout << "Human player wins.";
+			break;
+		}
+		display();
+		std::cout<<"Computer's turn..........";
+		game.makeComputerMove();
+		if (game.colors[0] == 0 ||
+			game.colors[1] == 0 ||
+			game.colors[2] == 0)
+		{
+			std::cout << "Computer wins.";
+			display();
+			break;
+		}
 	}
 
-	std::cout << "somebody wins.";
+	std::cout << "game over.";
 }
