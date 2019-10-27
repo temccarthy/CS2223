@@ -85,30 +85,26 @@ int UI::inputNumber()
 	return inumber;
 }
 
-void UI::display()
-{
-
-	for (int i = 0; i<3; i++)
-	{
-		for (int j = 0; j<game.colors[i]; j++)
-			{
-				if(i==0)
-				{
-					std::cout << "G";
-				}
-				if(i==1)
-				{
-					std::cout << "Y";
-				}
-				if(i==2)
-				{
-					std::cout << "O";
-				}
+void UI::display() {
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < game.colors[i]; j++) {
+			switch(i){
+			case 0:
+				cout << "G";
+				break;
+			case 1:
+				cout << "Y";
+				break;
+			case 2:
+				cout << "O";
+				break;
+			default:
+				cout << "you literally can't get here";
 			}
+		}
 		std::cout << "\n";
 	}
 }
-
 
 void UI::playerInput()
 {
