@@ -30,16 +30,18 @@ void Game::makeRandomMove(){
 	srand(time(NULL));
 	int index = -1;
 	bool done = true;
+	int numTake = -1;
 
 	while (!done){
 		index = rand()%3;
 		if (colors[index] != 0){
 			int numLeft = colors[index];
-			int numTake = rand()%(numLeft-1)+1;
+			numTake = rand()%(numLeft-1)+1;
 			makeMove(index, numTake);
 			done = true;
 		}
 	}
+	cout << "random move: removing " << numTake << " from " << index << "\n";
 }
 
 void Game::makeComputerMove(){
@@ -57,13 +59,13 @@ void Game::makeComputerMove(){
 
 	if (index == -1){
 		makeRandomMove();
-		cout << "making random move\n";
 	} else {
 		makeMove(index, sum);
-		cout << "removing " << index << " from " << sum;
+		cout << "removing " << sum << " from " << index << "\n";
 	}
 }
 
 int Game::findNimSum(){
+	cout << "nim sum is " << colors[0] <<"^"<< colors[1] <<"^"<< colors[2] <<"\n";
 	return colors[0]^colors[1]^colors[2];
 }

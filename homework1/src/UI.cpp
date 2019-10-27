@@ -105,7 +105,7 @@ void UI::display() {
 		}
 		std::cout << "\n";
 	}
-	cout << "\n- - - - - - - - - - - - - -\n\n";
+	cout << "- - - - - - - - - - - - - -\n";
 }
 
 void UI::playerInput()
@@ -114,7 +114,6 @@ void UI::playerInput()
 	number = inputNumber();
 
 	game.makeMove(color, number); //assumes input is valid. validity checked above.
-
 }
 
 
@@ -126,25 +125,25 @@ void UI::doEverything()
 	{
 		display();
 		playerInput();
-		if (game.colors[0] == 0 ||
-				game.colors[1] == 0 ||
+		if (game.colors[0] == 0 &&
+				game.colors[1] == 0 &&
 				game.colors[2] == 0)
 		{
-			std::cout << "Human player wins.";
+			std::cout << "Human player wins.\n";
 			break;
 		}
 		display();
-		std::cout<<"Computer's turn..........";
+		std::cout<<"Computer's turn - ";
 		game.makeComputerMove();
-		if (game.colors[0] == 0 ||
-			game.colors[1] == 0 ||
+		if (game.colors[0] == 0 &&
+			game.colors[1] == 0 &&
 			game.colors[2] == 0)
 		{
-			std::cout << "Computer wins.";
+			std::cout << "Computer wins.\n";
 			display();
 			break;
 		}
 	}
 
-	std::cout << "game over.";
+	std::cout << "game over";
 }
