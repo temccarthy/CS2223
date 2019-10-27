@@ -57,33 +57,11 @@ void Game::makeComputerMove(){
 
 	if (index == -1){
 		makeRandomMove();
+		cout << "making random move\n";
 	} else {
 		makeMove(index, sum);
+		cout << "removing " << index << " from " << sum;
 	}
-	/*
-	 *int sum = finsnimsum()
-	 *int index = determinemove(sum)
-	 *if index == -1{
-	 * random
-	 *}else {
-	 * makemove(index, sum)
-	 *}
-	 *
-	 *
-	 *def:
-	 *if sum == 0 {
-	 *  return -1       //for random move
-	 *  }
-	 *else {
-	 *for(.......)
-	 *for(.......) {
-	 *  if (num sum XOR  value[i] == nim sum)
-	 *  	{return i
-	 *  }
-	 *  return -1     // if the for loop doesnt return a valid move, return -1 for a random move
-	 *enddef
-	 *
-	 */
 }
 
 int Game::findNimSum(){
