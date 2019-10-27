@@ -2,7 +2,7 @@
  * main.cpp
  *
  *  Created on: Oct 24, 2019
- *      Author: Tim
+ *      Author: Tim McCarthy & Jarius Thomas
  */
 
 
