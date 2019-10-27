@@ -57,8 +57,10 @@ void Game::makeComputerMove(){
 
 	if (index == -1){
 		makeRandomMove();
+		cout << "computer made random move";
 	} else {
 		makeMove(index, sum);
+		cout << "computer removed " << sum << " from " << index;
 	}
 	/*
 	 *int sum = finsnimsum()
