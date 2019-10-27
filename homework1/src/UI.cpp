@@ -30,7 +30,7 @@ int UI::inputColor()
 		{
 			std::cout << "No tiles available  for this color.\n";
 		}
-	}while ((icolor !=0 && icolor !=1 && icolor!=2) && (game.colors[icolor] > 0));		//initial color choice
+	}while ((icolor !=0 && icolor !=1 && icolor!=2) && (game.colors[icolor] == 0));		//initial color choice
 
 
 
@@ -117,4 +117,18 @@ void UI::playerInput()
 
 	game.makeMove(color, number); //assumes input is valid. validity checked above.
 
+}
+
+
+void UI::doEverything()
+{
+	while(game.colors[0] != 0 ||
+		game.colors[1] != 0 ||
+		game.colors[2] != 0)
+	{
+		display();
+		playerInput();
+	}
+
+	std::cout << "somebody wins.";
 }

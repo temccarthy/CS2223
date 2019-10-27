@@ -16,6 +16,7 @@ public:
 	int number, color;
 	void display();
 	void playerInput();
+	void doEverything();
 private:
 	Game game;
 	int inputColor();
