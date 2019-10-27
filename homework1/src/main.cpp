@@ -13,7 +13,7 @@ using namespace std;
 
 int main(int argc, char* argv[]){
 	UI* aUI = new UI();
-	aUI->doEverything();
+	aUI->runGame();
 	return 0;
 
 	//~UI();

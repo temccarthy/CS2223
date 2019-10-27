@@ -14,9 +14,10 @@ public:
 	UI();
 	virtual ~UI();
 	int number, color;
-	void display();
-	void playerInput();
-	void doEverything();
+	void displayBoard();
+	void playerTurn();
+	void runGame();
+	void runTournament();
 private:
 	Game game;
 	int inputColor();

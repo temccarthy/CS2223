@@ -29,7 +29,7 @@ void Game::makeMove(int colorIndex, int numTake){
 void Game::makeRandomMove(){
 	srand(time(NULL));
 	int index = -1;
-	bool done = true;
+	bool done = false;
 	int numTake = -1;
 
 	while (!done){
@@ -46,16 +46,17 @@ void Game::makeRandomMove(){
 
 void Game::makeComputerMove(){
 	int sum = findNimSum();
-	int index=-1;
-	if (sum==0){
-		index = -1;
-	} else {
+	int index = -1;
+
+	if (sum != 0){
 		for (int i = 0; i<3; i++){
-			if (sum^colors[i == sum]){
+			if (((sum&colors[i]) == sum) && (colors[i]>=sum)){
 				index = i;
 			}
 		}
 	}
+
+
 
 	if (index == -1){
 		makeRandomMove();
@@ -66,6 +67,6 @@ void Game::makeComputerMove(){
 }
 
 int Game::findNimSum(){
-	cout << "nim sum is " << colors[0] <<"^"<< colors[1] <<"^"<< colors[2] <<"\n";
+	//cout << "nim sum is " << colors[0] <<"^"<< colors[1] <<"^"<< colors[2] <<"\n";
 	return colors[0]^colors[1]^colors[2];
 }

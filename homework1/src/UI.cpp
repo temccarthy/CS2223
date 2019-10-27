@@ -35,18 +35,22 @@ int UI::inputColor() {
 
 int UI::inputNumber() {
 	int inumber = -1;
-	do {
+	bool valid = false;
+
+	while (!valid) {
 		cout << "Tiles to remove from that color: ";
 		cin >> inumber;
-		if (game.colors[color] < inumber) {
+		if (inumber > game.colors[color] || inumber <= 0) {
 			cout << "u got too much dip on your chip (number invalid). try that again, bucko.\n";
+		} else {
+			valid = true;
 		}
-	} while ((game.colors[color] < inumber));
+	}
 
 	return inumber;
 }
 
-void UI::display() {
+void UI::displayBoard() {
 	cout << "- - - - - - - - - - - - - -\n";
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < game.colors[i]; j++) {
@@ -69,30 +73,34 @@ void UI::display() {
 	cout << "- - - - - - - - - - - - - -\n";
 }
 
-void UI::playerInput() {
+void UI::playerTurn() {
 	color = inputColor();
 	number = inputNumber();
 
 	game.makeMove(color, number); //assumes input is valid. validity checked above.
 }
 
-void UI::doEverything() {
+void UI::runGame() {
 	while (game.colors[0] != 0 || game.colors[1] != 0 || game.colors[2] != 0) {
-		display();
-		playerInput();
+		displayBoard();
+		playerTurn();
 		if (game.colors[0] == 0 && game.colors[1] == 0 && game.colors[2] == 0) {
 			cout << "Human player wins.\n";
-			display();
+			displayBoard();
 			break;
 		}
-		display();
+		displayBoard();
 		cout << "Computer's turn - ";
 		game.makeComputerMove();
 		if (game.colors[0] == 0 && game.colors[1] == 0 && game.colors[2] == 0) {
 			cout << "Computer wins\n";
-			display();
+			displayBoard();
 			break;
 		}
 	}
 	cout << "game over";
+}
+
+void UI::runTournament(){
+
 }

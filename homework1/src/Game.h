@@ -18,11 +18,11 @@ public:
 	virtual ~Game();
 
 	void makeMove(int color, int numTake);
-	void makeRandomMove();
 	void makeComputerMove();
 
 private:
 	int findNimSum();
+	void makeRandomMove();
 };
 
 #endif /* GAME_H_ */
