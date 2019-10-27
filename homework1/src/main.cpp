@@ -11,7 +11,6 @@ using namespace std;
 #include "Game.h"
 #include "UI.h"
 
-
 int main(int argc, char* argv[]){
 	UI* aUI = new UI();
 	aUI->doEverything();

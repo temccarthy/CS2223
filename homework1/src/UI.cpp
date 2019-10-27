@@ -23,7 +23,7 @@ int UI::inputColor() {
 
 	int icolor = -1;
 	do {
-		cout << "Type '0' for green, '1' for yellow, or '2' for orange\n";
+		cout << "Type '0' for green, '1' for yellow, or '2' for orange: ";
 		cin >> icolor;
 		if (game.colors[icolor] == 0) {
 			cout << "No tiles available  for this color.\n";
@@ -36,7 +36,7 @@ int UI::inputColor() {
 int UI::inputNumber() {
 	int inumber = -1;
 	do {
-		cout << "How many tiles do you want to remove ??\n";
+		cout << "Tiles to remove from that color: ";
 		cin >> inumber;
 		if (game.colors[color] < inumber) {
 			cout << "u got too much dip on your chip (number invalid). try that again, bucko.\n";
