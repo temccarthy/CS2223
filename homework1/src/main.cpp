@@ -2,7 +2,7 @@
  * main.cpp
  *
  *  Created on: Oct 24, 2019
- *      Author: Tim
+ *      Author: Tim McCarthy & Jarius Thomas
  */
 
 
@@ -11,12 +11,10 @@ using namespace std;
 #include "Game.h"
 #include "UI.h"
 
-
 int main(int argc, char* argv[]){
 	UI* aUI = new UI();
-	aUI->doEverything();
-	return 69;
-
+	aUI->runTournament(3);
+	return 0;
 
 	//~UI();
 }

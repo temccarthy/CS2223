@@ -14,14 +14,16 @@ public:
 	UI();
 	virtual ~UI();
 	int number, color;
-	void display();
-	void playerInput();
-	void doEverything();
+	void displayBoard();
+	void playerTurn();
+	int runGame();
+	void runTournament(int n);
 private:
 	Game game;
 	int inputColor();
 	int inputNumber();
 	bool inputValid(int color, int number);
+	int playerWins, computerWins;
 };
 
 #endif /* UI_H_ */
