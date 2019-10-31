@@ -23,7 +23,7 @@ UI::~UI() {
 
 }
 
-int UI::inputColor() {
+int UI::inputColor() { // loops for valid input
 
 	int icolor = -1;
 	do {
@@ -37,7 +37,7 @@ int UI::inputColor() {
 	return icolor;
 }
 
-int UI::inputNumber() {
+int UI::inputNumber() { // loops for valid input
 	int inumber = -1;
 	bool valid = false;
 
@@ -54,7 +54,7 @@ int UI::inputNumber() {
 	return inumber;
 }
 
-void UI::displayBoard() {
+void UI::displayBoard() { // prints current board
 	cout << "- - - - - - - - - - - - - -\n";
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < game->colors[i]; j++) {
@@ -77,7 +77,7 @@ void UI::displayBoard() {
 	cout << "- - - - - - - - - - - - - -\n";
 }
 
-int UI::playerTurn() {
+int UI::playerTurn() { // runs player turn, if all colors are 0, game ends, else computer turn is called
 	displayBoard();
 
 	color = inputColor();
@@ -93,7 +93,7 @@ int UI::playerTurn() {
 	return ret;
 }
 
-int UI::computerTurn() {
+int UI::computerTurn() { // runs computer turn, if all colors are 0, game ends, else player turn is called
 	displayBoard();
 	game->makeComputerMove();
 	int ret = -1;
@@ -107,7 +107,7 @@ int UI::computerTurn() {
 }
 
 
-int UI::runGame() {
+int UI::runGame() { // runs a game, deciding randomly who goes first
 	game = new Game();
 	int winner = -1;
 	srand(time(NULL));
@@ -129,29 +129,22 @@ int UI::runGame() {
 	return winner;
 }
 
-void UI::runTournament(int n){
-	while(playerWins < n+1 &&
-			computerWins < n+1)
-	{
-		int winner = runGame();
-		if (winner==0)
-		{
+void UI::runTournament(int n){ // runs tournament based on input in main
+	int winner = -1;
+	while ((playerWins < n + 1) && (computerWins < n + 1)) {
+		winner = runGame();
+		if (winner == 0) {
 			playerWins++;
-		}
-		else if (winner==1)
-		{
+		} else if (winner == 1) {
 			computerWins++;
 		}
 		cout << "game over, starting new game\n";
 	}
 
-	if(playerWins > computerWins)
-	{
-		cout<<"HUMAN WINS TOURNAMENT\n";
-	}
-	else if(playerWins < computerWins)
-	{
-		cout<<"COMPUTER WINS TOURNAMENT\n";
+	if (playerWins > computerWins) {
+		cout << "HUMAN WINS TOURNAMENT\n";
+	} else if (playerWins < computerWins) {
+		cout << "COMPUTER WINS TOURNAMENT\n";
 	}
 
 	cout<<"SCORE:\n";

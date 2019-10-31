@@ -22,11 +22,11 @@ Game::Game(){
 Game::~Game(){
 }
 
-void Game::makeMove(int colorIndex, int numTake){
+void Game::makeMove(int colorIndex, int numTake){ // removes x from y color
 	colors[colorIndex] -= numTake;
 }
 
-void Game::makeRandomMove(){
+void Game::makeRandomMove(){ // makes random valid move
 	srand(time(NULL));
 	int index = -1;
 	bool done = false;
@@ -44,7 +44,7 @@ void Game::makeRandomMove(){
 	cout << "random move: removing " << numTake << " from " << index << "\n";
 }
 
-void Game::makeComputerMove(){
+void Game::makeComputerMove(){ // checks for move to get nim sum = 0, if there is a possible move it makes it, else it makes a random move;
 	int sum = findNimSum();
 	int index = -1;
 
@@ -64,7 +64,7 @@ void Game::makeComputerMove(){
 	}
 }
 
-int Game::findNimSum(){
+int Game::findNimSum(){ // returns the nim sum of the game
 	//cout << "nim sum is " << colors[0] <<"^"<< colors[1] <<"^"<< colors[2] <<"\n";
 	return colors[0]^colors[1]^colors[2];
 }
