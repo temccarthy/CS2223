@@ -8,8 +8,8 @@
 #ifndef MAIN_H_
 #define MAIN_H_
 
-int Lucas(int n);
-
+long Lucas(int n);
+void LucasTiming(int n);
 
 
 #endif /* MAIN_H_ */
