@@ -11,7 +11,7 @@
 #define MAIN_H_
 
 
-
+bool palindromecheck(String s);
 
 
 #endif /* MAIN_H_ */
