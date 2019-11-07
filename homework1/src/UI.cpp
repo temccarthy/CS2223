@@ -6,11 +6,12 @@
  */
 
 #include <iostream>
+#include <time.h>
 using namespace std;
 #include "UI.h"
 
 UI::UI() {
-	game = Game();
+	game = new Game();
 	number = -1;
 	color = -1;
 
@@ -22,28 +23,28 @@ UI::~UI() {
 
 }
 
-int UI::inputColor() {
+int UI::inputColor() { // loops for valid input
 
 	int icolor = -1;
 	do {
 		cout << "Type '0' for green, '1' for yellow, or '2' for orange: ";
 		cin >> icolor;
-		if (game.colors[icolor] == 0) {
+		if (game->colors[icolor] == 0) {
 			cout << "No tiles available  for this color.\n";
 		}
 	} while ((icolor != 0 && icolor != 1 && icolor != 2)
-			|| (game.colors[icolor] == 0));		//initial color choice
+			|| (game->colors[icolor] == 0));		//initial color choice
 	return icolor;
 }
 
-int UI::inputNumber() {
+int UI::inputNumber() { // loops for valid input
 	int inumber = -1;
 	bool valid = false;
 
 	while (!valid) {
 		cout << "Tiles to remove from that color: ";
 		cin >> inumber;
-		if (inumber > game.colors[color] || inumber <= 0) {
+		if (inumber > game->colors[color] || inumber <= 0) {
 			cout << "u got too much dip on your chip (number invalid). try that again, bucko.\n";
 		} else {
 			valid = true;
@@ -53,10 +54,10 @@ int UI::inputNumber() {
 	return inumber;
 }
 
-void UI::displayBoard() {
+void UI::displayBoard() { // prints current board
 	cout << "- - - - - - - - - - - - - -\n";
 	for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < game.colors[i]; j++) {
+		for (int j = 0; j < game->colors[i]; j++) {
 			switch (i) {
 			case 0:
 				cout << "G";
@@ -76,59 +77,77 @@ void UI::displayBoard() {
 	cout << "- - - - - - - - - - - - - -\n";
 }
 
-void UI::playerTurn() {
+int UI::playerTurn() { // runs player turn, if all colors are 0, game ends, else computer turn is called
+	displayBoard();
+
 	color = inputColor();
 	number = inputNumber();
+	int ret = -1;
 
-	game.makeMove(color, number); //assumes input is valid. validity checked above.
-}
-
-int UI::runGame() {
-	while (game.colors[0] != 0 || game.colors[1] != 0 || game.colors[2] != 0) {
-		displayBoard();
-		playerTurn();
-		if (game.colors[0] == 0 && game.colors[1] == 0 && game.colors[2] == 0) {
-			cout << "Human player wins.\n";
-			displayBoard();
-			return 0;
-		}
-		displayBoard();
-		cout << "Computer's turn - ";
-		game.makeComputerMove();
-		if (game.colors[0] == 0 && game.colors[1] == 0 && game.colors[2] == 0) {
-			cout << "Computer wins\n";
-			displayBoard();
-			return 1;
-		}
+	game->makeMove(color, number); //assumes input is valid. validity checked above.
+	if (!(game->colors[0] == 0 && game->colors[1] == 0 && game->colors[2] == 0)){
+		ret = computerTurn();
+	} else {
+		ret = 0;
 	}
-	cout << "game over";
+	return ret;
 }
 
-void UI::runTournament(int n){
-	while(playerWins < n+1  ||
-			computerWins < n+1)
-	{
-		int winner = runGame();
-		if (winner==0)
-		{
+int UI::computerTurn() { // runs computer turn, if all colors are 0, game ends, else player turn is called
+	displayBoard();
+	game->makeComputerMove();
+	int ret = -1;
+
+	if (!(game->colors[0] == 0 && game->colors[1] == 0 && game->colors[2] == 0)){
+		ret =playerTurn();
+	} else {
+		ret = 1;
+	}
+	return ret;
+}
+
+
+int UI::runGame() { // runs a game, deciding randomly who goes first
+	game = new Game();
+	int winner = -1;
+	srand(time(NULL));
+	int turn = rand()%2;
+	if (turn){
+		cout << "player goes first\n";
+		winner = playerTurn();
+	} else {
+		cout << "computer goes first\n";
+		winner = computerTurn();
+	}
+
+	if (winner){
+		cout << "Computer wins\n";
+	} else {
+		cout << "Human player wins.\n";
+	}
+
+	return winner;
+}
+
+void UI::runTournament(int n){ // runs tournament based on input in main
+	int winner = -1;
+	while ((playerWins < n + 1) && (computerWins < n + 1)) {
+		winner = runGame();
+		if (winner == 0) {
 			playerWins++;
-		}
-		else if (winner==1)
-		{
+		} else if (winner == 1) {
 			computerWins++;
 		}
+		cout << "game over, starting new game\n";
 	}
 
-	if(playerWins > computerWins)
-	{
-		cout<<"HUMAN WINS TOURNAMENT\n";
-	}
-	else if(playerWins < computerWins)
-	{
-		cout<<"COMPUTER WINS TOURNAMENT\n";
+	if (playerWins > computerWins) {
+		cout << "HUMAN WINS TOURNAMENT\n";
+	} else if (playerWins < computerWins) {
+		cout << "COMPUTER WINS TOURNAMENT\n";
 	}
 
 	cout<<"SCORE:\n";
-	cout<<"HUMAN:" << playerWins << "\n";
-	cout<<"CPU:\n" << computerWins << "\n";
+	cout<<"HUMAN: " << playerWins << "\n";
+	cout<<"CPU: " << computerWins << "\n";
 }

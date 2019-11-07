@@ -15,11 +15,12 @@ public:
 	virtual ~UI();
 	int number, color;
 	void displayBoard();
-	void playerTurn();
+	int playerTurn();
+	int computerTurn();
 	int runGame();
 	void runTournament(int n);
 private:
-	Game game;
+	Game* game;
 	int inputColor();
 	int inputNumber();
 	bool inputValid(int color, int number);
