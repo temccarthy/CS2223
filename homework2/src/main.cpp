@@ -24,6 +24,7 @@
  *
  * Question 4:
  * The sum 66 can be created with the greatest number of combinations (1364)
+ *
  * 66 is interesting because it's the magic number times 2
  * also execute order 66
  */
@@ -34,10 +35,23 @@ using namespace std;
 #include <time.h>
 
 int main(int argc, char* argv[]){
-	//LucasTiming(45);
+	cout << "Calculating the 30th Lucas Number: " << Lucas(30) << "\n\n";
+
+
+	cout << "Calculating Lucas Times: \n";
+	LucasTiming(45);
+	cout << "\n\n";
+
+
+	cout << "Calculating all 4-element combos whose sum is 33: " << countCombos(33, 4) << "\n\n";
+
+	cout << "Calculating all element combos whose sum is 33: " << countCombosGivenSum(33) << "\n\n";
+
+	cout << "Calculating all combos for given sums: \n";
+
 	for (int i = 0; i< 133; i++){
 		int total = countCombosGivenSum(i);
-		cout << "for sum " << i << ", there are " << total << " many combos\n";
+		cout << "for sum " << i << ", there are " << total << " combos\n";
 	}
 	return 0;
 }
