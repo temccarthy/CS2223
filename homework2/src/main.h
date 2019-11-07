@@ -12,5 +12,6 @@ long Lucas(int n);
 void LucasTiming(int n);
 
 int countCombos(int sum, int nElements);
+int countCombosGivenSum(int sum);
 
 #endif /* MAIN_H_ */

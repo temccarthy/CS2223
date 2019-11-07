@@ -22,7 +22,10 @@
  * The ratio between current and previous calculations is about 1.61, or the golden ratio
  * The order of growth is about O(1.61^n)
  *
- *
+ * Question 4:
+ * The sum 66 can be created with the greatest number of combinations (1364)
+ * 66 is interesting because it's the magic number times 2
+ * also execute order 66
  */
 
 #include <iostream>
@@ -32,6 +35,10 @@ using namespace std;
 
 int main(int argc, char* argv[]){
 	//LucasTiming(45);
+	for (int i = 0; i< 133; i++){
+		int total = countCombosGivenSum(i);
+		cout << "for sum " << i << ", there are " << total << " many combos\n";
+	}
 	return 0;
 }
 
@@ -67,6 +74,7 @@ void LucasTiming(int n){
 }
 
 int countCombos(int sum, int nElements){
+	int squareArray[16] = {1, 14, 14, 4, 11, 7, 6, 9, 8, 10, 10, 5, 13, 2, 3, 15};
 	int accum = 0;
 
 	int i;
@@ -82,8 +90,33 @@ int countCombos(int sum, int nElements){
 		if (count == nElements){
 			int sumAccum = 0;
 
+			tempI = i;
+			int innerCount = 0;
+			while (tempI){
+				if (tempI & 1){
+					sumAccum += squareArray[innerCount];
+					//cout << squareArray[innerCount] << " ";
+				}
+				tempI = tempI>>1;
+				innerCount++;
+			}
+			//cout << "\n";
+
+			if (sumAccum == sum){
+				accum++;
+			}
 		}
 
+	}
+	return accum;
+}
+
+int countCombosGivenSum(int sum){
+	int accum = 0;
+	for (int j = 0; j<=16; j++){
+		int totalCombos = countCombos(sum, j);
+		accum += totalCombos;
+		//cout << "for combinations of "<< j <<" elements, there are " << totalCombos << " that add to " << sum << "\n";
 	}
 	return accum;
 }
